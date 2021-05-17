@@ -1,0 +1,83 @@
+<!--print_1.art-->
+<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title></title>
+    <style>
+        body,table,h1{
+            margin: 0;
+            padding: 0;
+        }
+        p, th, td {
+            padding: 0 0 0 5px;
+}
+        .tmp-table {
+        border-spacing: 0;
+        border-collapse: collapse;
+        margin: 0 auto;
+        font-size:11px;
+        width:100%;
+        }
+
+        .tmp-table th,
+        .tmp-table td {
+        border: 1px solid #000;
+        word-wrap: break-word;
+        height: 31px;
+        }
+        .tmp-table th {
+        height: 43px;
+        }
+        .tmp-table td {
+        word-wrap: break-word;
+        height: 31px;
+        }
+       
+        
+    </style>
+    </style>
+</head>
+<body>
+    <div id="demo" style="position:relative;padding-top:30px;">
+            <h1 style="font-size:30px;text-align:center;font-weight:normal;">民兵花名册</h1>
+            <table class="tmp-table" style="margin-top:40px;border:1px solid #000;border-right:0;">
+                <tbody class="tmp-body">
+                    <tr>
+                        <th>编组序列</th>
+                        <th>职务</th>
+                        <th>姓名</th>
+                        <th>性别</th>
+                        <th>出生年月</th>
+                        <th>民族</th>
+                        <th>政治面貌</th>
+                        <th>文化程度</th>
+                        <th>是否退军人</th>
+                        <th>联系电话</th>
+                    </tr>
+                    {{each users item}}
+                    {{if $index%20==0}}
+
+                    <tr style="page-break-befor:always;"><!-- 此tr上下的换行符不要去掉，分页必用 -->
+
+                    {{/if}}
+                    {{if $index%20!=0}}
+                    <tr>
+                    {{/if}}
+                        <td>{{item.outerSystemUserId}}</td>
+                        <td></td>
+                        <td>{{item.name}}</td>
+                        <td>{{item.sex}}</td>
+                        <td>{{item.birthDay}}</td>
+                        <td>{{item.nation}}</td>
+                        <td>{{item.politicalIdentity}}</td>
+                        <td>{{item.education}}</td>
+                        <td>否</td>
+                        <td>{{item.phone}}</td>
+                    </tr>
+                    {{/each}}
+                </tbody>
+            </table>
+        </div>
+</body>
+</html>

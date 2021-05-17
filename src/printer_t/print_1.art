@@ -1,0 +1,288 @@
+<!--print_1.art-->
+<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title></title>
+    <style>
+        body,table,h1{
+            margin: 0;
+            padding: 0;
+        }
+        p, th, td {
+            padding: 0 0 0 5px;
+}
+        .tmp-table {
+        border-spacing: 0;
+        border-collapse: collapse;
+        margin: 0 auto;
+        font-size:11px;
+        }
+
+        .tmp-table th,
+        .tmp-table td {
+        border: 1px solid #000;
+        word-wrap: break-word;
+        height: 31px;
+        }
+        .tmp-table th {
+        height: 43px;
+        }
+        .tmp-txt-right {
+        text-align: right;
+        padding-right: 15px;
+        padding-bottom: 15px;
+        position: relative;
+        }
+        .tem-list-title {
+        text-align: left;
+        padding-top:5px;
+        font-size:0;
+        }
+        .tem-list-content{
+            font-size:0;
+            min-height:50px;
+        }
+        .tem-list-title > span,
+        .tem-list-content > p > span {
+        display: inline-block;
+        box-sizing: border-box;
+        line-height: 1.6;
+        vertical-align: top;
+        text-align: left;
+        padding: 0 5px 0 0;
+        width:90px;
+        font-size:11px;
+        }
+        
+        .tem-list-title > span:nth-child(3),
+        .tem-list-content > p > span:nth-child(3) {
+            width:150px;
+        box-sizing: border-box;
+
+        }
+        .tem-list-title > span:nth-child(5),
+        .tem-list-content > p > span:nth-child(5) {
+            width:50px;
+        box-sizing: border-box;
+
+        }
+        
+        .tem-advice-con{
+        text-align:left;
+        padding: 5px;
+        margin-bottom: 20px;
+        min-height:42px;
+        }
+        
+    </style>
+    </style>
+</head>
+<body>
+    <div id="demo" style="position:relative;">
+        <h1 style="font-size:30px;text-align:center;font-weight:normal;position:relative;top:-8px;">政治考核表</h1>
+        <table class="tmp-table" >
+            <tbody class="tmp-body">
+                <tr>
+                    <td style="width:180px">姓名</td>
+                    <td style="width:120px">{{name||''}}</td>
+                    <td style="width:100px">曾用名</td>
+                    <td style="width:100px">{{name||''}}</td>
+                    <td style="width:90px">性别</td>
+                    <td style="width:80px">{{!sex?'':(sex==1?'男':'女')}}</td>
+                    <td style="width:122px;" rowspan="4">
+                        <img src="{{showIconUrl||''}}" style="width:121px;height:148px;margin-left:-4px;"/>
+                    </td>
+                </tr>
+                <tr>
+                    <td>出生日期</td>
+                    <td>{{birthDay||''}}</td>
+                    <td>政治面貌</td>
+                    <td>{{politicalIdentity||''}}</td>
+                    <td>民族</td>
+                    <td>{{nation||''}}</td>
+                </tr>
+                <tr>
+                    <td>宗教信仰</td>
+                    <td>{{religiousBelief}}</td>
+                    <td>户籍类别</td>
+                    <td>{{censusRegisterType==1?'农村户口':'城镇户口'}}</td>
+                    <td>婚姻状况</td>
+                    <td>{{maritalStatus==0?'未婚':'已婚'}}</td>
+                </tr>
+                <tr>
+                    <td>工作单位及职务</td>
+                    <td colspan="3">{{unitjob || ''}}</td>
+                    <td>文化程度</td>
+                    <td>{{education||''}}</td>
+                </tr>
+                <tr>
+                    <td>身份证号码</td>
+                    <td colspan="2">{{idNo||''}}</td>
+                    <td>户籍所在地</td>
+                    <td colspan="4">{{detail.nowPoliceStation||''}}</td>
+                </tr>
+                <tr>
+                    <td>家庭住址及邮箱</td>
+                    <td colspan="3">{{address||''}}</td>
+                    <td>手机号码</td>
+                    <td colspan="2">{{phone||''}}</td>
+                </tr>
+                <tr>
+                    <td>主要经历</td>
+                    <td colspan="6">
+                        <p class="tem-list-title">
+                            {{if archive_main_experience }}
+                                {{each archive_main_experience.rows}}
+                                <span>{{$value.label ||''}}</span>
+                                {{/each}}
+                            {{/if}}
+                            {{if !archive_main_experience }}
+                               <span>起始时间</span>
+                               <span>停止时间</span>
+                               <span>学校或单位</span>
+                               <span>专业或职业</span>
+                               <span>证明人</span>
+                            {{/if}}
+                        </p>
+                        <div class="tem-list-content">
+                            {{if archive_main_experience }}
+                                {{each archive_main_experience.data item}}
+                                    <p>
+                                    {{each archive_main_experience.rows col}}
+                                        <span>{{item[col.dfkey]||''}}</span>
+                                    {{/each}}
+                                    </p>
+                                {{/each}}
+                            {{/if}}
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td>奖惩情况</td>
+                    <td colspan="6">
+                        <p class="tem-list-title">
+                        {{if archive_reward_punishment}}
+                            {{each archive_reward_punishment.rows}}
+                            <span>{{$value.label||''}}</span>
+                            {{/each}}
+                        {{/if}}
+                        {{if !archive_reward_punishment}}
+                            <span>奖惩名称</span>
+                            <span>奖惩时间</span>
+                            <span>奖惩单位</span>
+                            <span>奖惩原因</span>
+                        {{/if}}
+                        </p>
+                        <div class="tem-list-content">
+                            {{if archive_reward_punishment}}
+                                {{each archive_reward_punishment.data item}}
+                                    <p>
+                                    {{each archive_reward_punishment.rows col}}
+                                    <span>{{item[col.dfkey]||''}}</span>
+                                    {{/each}}
+                                    </p>
+                                {{/each}}
+                            {{/if}}
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td>家庭成员情况</td>
+                    <td colspan="6">
+                        <p class="tem-list-title">
+                        {{if archive_family}}
+                            {{each archive_family.rows}}
+                            <span>{{$value.label||''}}</span>
+                            {{/each}}
+                        {{/if}}
+                        {{if !archive_family}}
+                        <span>称谓</span>
+                        <span>姓名</span>
+                        <span>省份证号</span>
+                        <span>工作单位及职务</span>
+                        {{/if}}
+                        </p>
+                        <div class="tem-list-content">
+                            {{if archive_family}}
+                                {{each archive_family.data || [] item}}
+                                    <p>
+                                    {{each archive_family.rows col}}
+                                    <span>{{item[col.dfkey]||''}}</span>
+                                    {{/each}}
+                                    </p>
+                                {{/each}}
+                            {{/if}}
+                        </div>
+                    </td>
+                </tr>
+
+               <!-- <tr>
+                    <td style="height:20px" rowspan="2">本人承诺</td>
+                    <td colspan="6" style="text-align:left;padding-left:15px;">以上内容属实，如有隐瞒或不实，本人自愿承担相关责任</td>
+                </tr>
+                
+                <tr>
+                    <td colspan="6" style="text-align:right;padding-right:15px;">本人签字__________：_____年___月___日</td>
+                </tr>
+                -->
+                {{set data = (archive_politics_careful_opinion && archive_politics_careful_opinion.data[0]) || []}}
+                <tr>
+                    <td>镇（区）、街道或单位党委审批意见</td>
+                    <td colspan="6" class="tmp-txt-right">
+                        <p class="tem-advice-con">
+                            <span>{{data?data.approvalOpinion:''}}</span>
+                        </p>
+                        <p class="tmp-txt-right">{{data?data.approvalOpinionDate:''}}</p>
+                        <span style="border: none;">
+                            <img
+                                border="0"
+                                transcolor=""
+                                src="{{sealList[0]||''}}"
+                                style="z-index: -1; position: absolute; right:0; bottom:0;border: none;"
+                            />
+                        </span>
+                    </td>
+                </tr>
+                <tr>
+                    <td>所在单位自查意见，公安（派出所）考核意见</td>
+                    <td colspan="6" class="tmp-txt-right">
+                        <p class="tem-advice-con">
+                            <span>{{data?data.assessmentOpinions:''}}</span>
+                        </p>
+                        <p class="tmp-txt-right">{{data?data.assessmentOpinionsDate:''}}</p>
+                        <span style="border: none;">
+                            <img
+                                border="0"
+                                transcolor=""
+                                src="{{sealList[1]||''}}"
+                                style="z-index: -1; position: absolute; right:0; bottom:0;border: none;"
+                            />
+                        </span>
+                    </td>
+                </tr>
+                <tr>
+                    <td>基层武装部审查意见</td>
+                    <td colspan="6" class="tmp-txt-right">
+                        <p class="tem-advice-con">
+                            <span>{{data?data.reviewComment:''}}</span>
+                        </p>
+                        <p class="tmp-txt-right">{{data?data.reviewCommentDate:''}}</p>
+                        <span style="border: none;">
+                            <img
+                                border="0"
+                                transcolor=""
+                                src="{{sealList[2]||''}}"
+                                style="z-index: -1; position: absolute; right:0; bottom:0;border: none;"
+                            />
+                        </span>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+</div>
+<p>
+        打印日期：{{printDate}}
+</p>
+</body>
+</html>

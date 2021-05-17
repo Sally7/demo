@@ -1,0 +1,367 @@
+@import './variables.scss';
+@import './mixin.scss';
+@import './transition.scss';
+@import './element-ui.scss';
+@import './sidebar.scss';
+@import './btn.scss';
+
+html, body, ul, ol, li, h1, h2, h3, h4, p {
+  margin: 0;
+  padding: 0;
+}
+ol, ul {
+  list-style: none;
+}
+body {
+  height: 100%;
+  line-height: 1.5;
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+  font-size: 14px;
+  font-family: Helvetica Neue, Helvetica, PingFang SC, Hiragino Sans GB, Microsoft YaHei, Arial, sans-serif;
+  background-color: #f0f0f0;
+}
+
+html {
+  height: 100%;
+  box-sizing: border-box;
+}
+
+#app{
+  height: 100%;
+}
+*,
+*:before,
+*:after {
+  box-sizing: inherit;
+}
+
+.no-padding {
+  padding: 0px !important;
+}
+
+a:focus,
+a:active {
+  outline: none;
+}
+
+a,
+a:focus,
+a:hover {
+  cursor: pointer;
+  color: inherit;
+  text-decoration: none;
+}
+
+div:focus{
+  outline: none;
+}
+
+.fr {
+  float: right;
+}
+
+.fl {
+  float: left;
+}
+
+//padding
+.pt20 {
+  padding-top: 20px;
+}
+.pr-5 {
+  padding-right: 5px;
+}
+.pl-5 {
+  padding-left: 5px;
+}
+
+//margin
+.mt10 {
+  margin-top: 10px;
+}
+.ml10 {
+  margin-left: 10px;
+}
+.mb15 {
+  margin-bottom: 15px;
+}
+.mtm10 {
+  margin-top: -10px;
+}
+.mlm20 {
+  margin-left: -20px;
+}
+.box-background-color{
+  background-color: #FFFFFF;
+}
+// text
+.text-center {
+  text-align: center
+}
+.text-right {
+  text-align: right
+}
+.text-success {
+  color: #67C23A;
+}
+.text-warning {
+  color: #E6A23C;
+}
+.text-danger {
+  color: #F56C6C;
+}
+.text-primary {
+  color: #409EFF;
+}
+.text-default {
+  color: #909399;
+}
+
+.block {
+  display: block;
+}
+
+.pointer {
+  cursor: pointer;
+}
+
+.clearfix {
+  &:before {
+    display: table;
+    line-height: 0;
+    content: "";
+  }
+  &:after {
+    visibility: hidden;
+    display: block;
+    font-size: 0;
+    content: " ";
+    clear: both;
+    height: 0;
+  }
+}
+
+code {
+  background: #eef1f6;
+  padding: 15px 10px;
+  margin-bottom: 20px;
+  display: block;
+  line-height: 36px;
+  a {
+    color: #337ab7;
+    cursor: pointer;
+    &:hover {
+      color: rgb(32, 160, 255);
+    }
+  }
+}
+
+.warn-content{
+  background: rgba(66,185,131,.1);
+  border-radius: 2px;
+  padding: 16px;
+  padding: 1rem;
+  line-height: 1.6rem;
+  word-spacing: .05rem;
+  a{
+    color: #42b983;
+    font-weight: 600;
+  }
+}
+
+//Message消息提示浮层级别设置
+.el-message, .message-tip-level {
+  z-index: 10000 !important;
+}
+
+//百度地图隐藏左下角百度logo
+.anchorBL{display:none;}
+
+//main-container全局样式
+.app-container {
+  padding: 0;
+  padding-bottom: 32px;
+  min-width: 750px;
+  min-height: 620px;
+  -webkit-box-shadow: 0 0 1px 0 rgba(0,0,0,0.2);
+  box-shadow: 0 0 1px 0 rgba(0,0,0,0.2);
+  background-color: #fff;
+}
+.app__content {
+  padding: 15px;
+  min-height: 420px;
+  zoom: 1;
+}
+.search-box {
+  background-color: rgb(247, 248, 250);
+  padding: 20px;
+  margin-top:20px;
+}
+
+.module-title {
+  font-weight: bold;
+  font-size: 14px;
+  line-height: 44px;
+  padding-left: 10px;
+  border-bottom: 1px solid #E0E0E0;
+  background-color: #fafafa;
+}
+.components-container {
+  margin: 30px 50px;
+  position: relative;
+}
+
+.pagination-container {
+  margin-top: 30px;
+}
+
+//标题样式
+.form-title {
+  padding: 15px 0;
+  margin: 0;
+  font-size: 14px;
+  font-weight: bold;
+  line-height: 24px;
+}
+.form-content {
+  padding-left: 20px;
+}
+
+//页数栏样式
+.counts-wrap {
+  padding: 0 10px;
+  text-align: right;
+  color: #333;
+  font-size: 14px;
+}
+
+.editor-container .CodeMirror {
+  height: 100%!important;
+}
+
+.sub-navbar {
+  height: 50px;
+  line-height: 50px;
+  position: relative;
+  width: 100%;
+  text-align: right;
+  padding-right: 20px;
+  transition: 600ms ease position;
+  background: linear-gradient(90deg, rgba(32, 182, 249, 1) 0%, rgba(32, 182, 249, 1) 0%, rgba(33, 120, 241, 1) 100%, rgba(33, 120, 241, 1) 100%);
+  .subtitle {
+    font-size: 20px;
+    color: #fff;
+  }
+  &.draft {
+    background: #d0d0d0;
+  }
+  &.deleted {
+    background: #d0d0d0;
+  }
+}
+
+.link-type,
+.link-type:focus {
+  color: #337ab7;
+  cursor: pointer;
+  &:hover {
+    color: rgb(32, 160, 255);
+  }
+}
+
+.filter-container {
+  padding-bottom: 10px;
+  .filter-item {
+    display: inline-block;
+    vertical-align: middle;
+    margin-bottom: 10px;
+  }
+}
+
+//refine vue-multiselect plugin
+.multiselect {
+  line-height: 16px;
+}
+
+.multiselect--active {
+  z-index: 1000 !important;
+}
+
+
+//上传头像图标样式
+.avatar-uploader {
+  line-height: 14px;
+}
+.avatar-uploader-icon {
+  font-size: 28px;
+  color: #8c939d;
+  width: 48px;
+  height: 48px;
+  line-height: 48px;
+  text-align: center;
+}
+.avatar {
+  width: 140px;
+  height: 48px;
+  display: block;
+}
+.cover-img {
+  width: 100px;
+  height: auto;
+  display: block;
+}
+.el-upload__tip {
+  line-height: 13px;
+}
+.avatar-uploader .el-upload {
+  border: 1px dashed #d9d9d9;
+  border-radius: 6px;
+  cursor: pointer;
+  position: relative;
+  overflow: hidden;
+}
+.avatar-uploader .el-upload:hover {
+  border-color: #409EFF;
+}
+
+//底部按钮栏
+.footer {
+  position: fixed;
+  width:100%;
+  bottom: 0;
+  left: 220px;
+  right: 20px;
+  padding: 10px 0;
+  text-align: center;
+  z-index: 99;
+  background-color: #ffffcc;
+}
+.ebase-frame-header-inner{
+  margin: 0 auto;
+  height: 100%;
+  width: 1210px;
+}
+@media screen and (max-width: 1480px){
+  .ebase-frame-header-inner{
+
+  }
+}
+@media screen and (min-width: 1480px){
+  .ebase-frame-header-inner{
+    width: 1210px;
+  }
+}
+//@media screen and (min-width: 1600px){
+//  .ebase-frame-header-inner {
+//    width: 1430px;
+//  }
+//}
+//
+//@media screen and (max-width: 1600px) and (min-width: 1480px){
+//  .ebase-frame-header-inner {
+//    width: 1310px;
+//  }
+//}
+
