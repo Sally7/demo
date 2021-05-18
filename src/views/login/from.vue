@@ -30,8 +30,8 @@
             >
               <div style="display: flex">
                 <div v-for="(item,index) in params.data[index].preview">
-                  <img :key="index" :src="item" class="avatar">
-                  <el-input class="input-box" placeholder="请输入备注内容"></el-input>
+                  <img :key="index" :src="item.url" class="avatar">
+                  <el-input class="input-box" v-model="item.desc" placeholder="请输入备注内容"></el-input>
                 </div>
                 <el-upload
                     class="avatar-uploader"
@@ -44,9 +44,7 @@
                     :on-success="handleAvatarSuccess"
                     :before-upload="beforeAvatarUpload">
                   <i v-if="params.data[index].preview.length<9" class="el-icon-plus avatar-uploader-icon"></i>
-
                 </el-upload>
-
               </div>
              </el-form-item>
 
@@ -177,7 +175,8 @@ export default {
     handleAvatarSuccess (res, file) {
       const { image, key } = res.data
       this.params.data[key].image  += (","+image.path)
-     this.params.data[key].preview.push(image.preview)
+      this.params.data[key].preview.push({url:image.preview})
+     // this.params.data[key].preview.push(image.preview)
       // this.params.data[key].push(image.preview)
     },
     beforeAvatarUpload (file) {
@@ -233,7 +232,7 @@ export default {
             let videoForm = this.videoForm;
 
           params.data.forEach((item) => {
-            delete item.preview
+            // delete item.preview
             // item['videos'] = this.videoForm.storageurl;
           })
           return console.log(params.data);
@@ -260,7 +259,7 @@ export default {
     doEdit () {
       let params = this.params
       params.data.forEach((item) => {
-        delete item.preview
+        // delete item.preview
       })
       updateStaffWorkRecord(params).then(response => {
         this.$notify({
